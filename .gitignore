@@ -101,6 +101,7 @@ dist
 .dynamodb/
 
 # TernJS port file
-.tern-port
+.tern-por
 
+# Databasa
 ._mysql_data_dir
