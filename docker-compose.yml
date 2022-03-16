@@ -1,0 +1,27 @@
+version: "3"
+services:
+    cloud-app-node:
+        image: "node:17-alpine3.14"
+        container_name: "cloud-app-node"
+        entrypoint: "/bin/sh -c -- \"while true; do sleep 10; done\""
+        links:
+          - "cloud-app-mariadb:mariadb.host"
+        ports:
+          - 8080:8080
+        volumes:
+            - "./:/cloud-app"
+        working_dir: /cloud-app
+        restart: always
+    cloud-app-mariadb:
+        image: "mariadb:10.6"
+        container_name: "cloud-app-mariadb"
+        volumes:
+            - "._mysql_data_dir/:/var/lib/mysql"
+        ports:
+          - 3307:3306
+        environment:
+          - MARIADB_USER
+          - MARIADB_PASSWORD
+          - MARIADB_DATABASE
+          - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
+        restart: always
