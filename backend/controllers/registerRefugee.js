@@ -2,6 +2,7 @@ import connection from "../db/index.js";
 
 
 class RegisterHost {
+
     async registerHost (name, lastName, email, age, password, city) {
 
         console.log(name, lastName, email, password, age, city)
