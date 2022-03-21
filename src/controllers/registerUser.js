@@ -7,9 +7,9 @@ class RegisterUser {
     {
         
         const {name, lastName, email, password, isHost, isRefugee} = request
-        if(!name || !lastName || !email || !password || isHost == undefined || !isRefugee == undefined) 
-            return {success : false, message : "Something wrong with the request"}
-        console.log(this.validatePassword(password))
+
+        if(!this.validatePassword(password)) return {success : false, message : "Invalide password format"}
+        console.log()
         const hashPassword = await this.hashPassword(password)
         const inserts = {
             name ,

@@ -1,7 +1,7 @@
 import sequelize from "../utils/db.js";
 import Sequelize from 'sequelize'
 
-const PossibleCountry = sequelize.define("possibleCountry", {
+const PossibleCountry = sequelize.define("possiblecountry", {
     id : {
         type : Sequelize.INTEGER(11),
         autoIncrement : true,
@@ -13,6 +13,6 @@ const PossibleCountry = sequelize.define("possibleCountry", {
         allowNull : false
     }
 
-})
+}, {freezeTableName: true})
 
 export default PossibleCountry

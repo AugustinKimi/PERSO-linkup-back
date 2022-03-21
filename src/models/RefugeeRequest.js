@@ -1,7 +1,7 @@
 import sequelize from "../utils/db.js";
 import Sequelize from 'sequelize'
 
-const RefugeeRequest = sequelize.define("refugeeRequest", {
+const RefugeeRequest = sequelize.define("refugeerequest", {
     id : {
         type : Sequelize.INTEGER(11),
         autoIncrement : true,
@@ -16,15 +16,15 @@ const RefugeeRequest = sequelize.define("refugeeRequest", {
         type : Sequelize.STRING,
         allowNull : false
     },
-    totalRefugee : {
+    adultRefugees : {
         type : Sequelize.INTEGER,
         allowNull : false
     },
-    childrens : {
+    childrenRefugees : {
         type : Sequelize.INTEGER,
         allowNull : false
     }
 
-})
+}, {freezeTableName: true})
 
 export default RefugeeRequest

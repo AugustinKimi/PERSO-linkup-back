@@ -1,7 +1,8 @@
 import sequelize from "../utils/db.js";
 import Sequelize from 'sequelize'
+import User from "./User.js";
 
-const HostProposition = sequelize.define("hostProposition", {
+const HostProposition = sequelize.define("hostproposition", {
     id : {
         type : Sequelize.INTEGER(11),
         autoIncrement : true,
@@ -16,15 +17,14 @@ const HostProposition = sequelize.define("hostProposition", {
         type : Sequelize.STRING,
         allowNull : false
     },
-    hostCapcity : {
+    hostCapacity : {
         type : Sequelize.INTEGER,
         allowNull : false
     },
     description : {
         type : Sequelize.STRING,
         allowNull : false
-    }
-
-})
+    },
+}, {freezeTableName: true})
 
 export default HostProposition

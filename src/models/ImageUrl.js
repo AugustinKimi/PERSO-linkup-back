@@ -1,7 +1,7 @@
 import sequelize from "../utils/db.js";
 import Sequelize from 'sequelize'
 
-const ImageUrl  = sequelize.define("imageUrl", {
+const ImageUrl  = sequelize.define("imageurl", {
     id : {
         type : Sequelize.INTEGER(11),
         autoIncrement : true,
@@ -13,6 +13,6 @@ const ImageUrl  = sequelize.define("imageUrl", {
         allowNull : false
     }
 
-})
+}, {freezeTableName: true})
 
 export default ImageUrl

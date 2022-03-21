@@ -5,7 +5,18 @@ class LoginUser  {
 
     loginUser = async (request) => {
         const {email, password} = request
-        const user = await User.findAll({where : { email }})
+        if(!email || !password) 
+            return {success : false, message : "Something wrong with the request"}
+        let user
+
+        try{
+            user = await User.findAll({where : { email }})
+        }
+        catch (error){
+            // console.log(error)
+            return {success : false, message : error}
+
+        }
 
         if(user.length === 0) return {sucess : false, message : "No user found"}
 

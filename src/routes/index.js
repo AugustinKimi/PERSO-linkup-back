@@ -1,6 +1,7 @@
 import express from 'express'
 import RegisterUser from '../controllers/registerUser.js'
 import LoginUser from '../controllers/loginUser.js'
+import CreateProposition from '../controllers/createProposition.js'
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
@@ -19,8 +20,10 @@ router.post('/api/login-user', async (req, res, next) => {
     res.json(response)
 })
 
-router.post('/api/create-host-proposition', async (req, res, next ) => {
-    res.json({proposition : 'Propotion added'})
+router.post('/api/create-proposition', async (req, res, next ) => {
+    const createProposition = new CreateProposition()
+    const response = await createProposition.createProposition(req.body)
+    res.json(response)
 })
 
 router.post('/api/create-refugee-request', async (req, res, next ) => {
