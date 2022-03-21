@@ -2,16 +2,17 @@ import sequelize from "./db.js";
 import User from "../models/User.js";
 import HostProposition from "../models/HostProposition.js";
 import RefugeeRequest from "../models/RefugeeRequest.js";
-import RefugeeUser from '../models/RefugeeUser.js'
-import HostUser from '../models/HostUser.js'
+import PossibleCountry from '../models/PossibleCountry.js'
+import ImageUrl from "../models/ImageUrl.js";
 
 
-User.hasOne(RefugeeUser)
-User.hasOne(HostUser)
-HostUser.hasMany(HostProposition)
-RefugeeUser.hasOne(RefugeeRequest)
+
+User.hasMany(HostProposition)
+User.hasMany(RefugeeRequest)
+User.hasMany(ImageUrl)
+RefugeeRequest.hasMany(PossibleCountry)
 
 sequelize
-    .sync({force : true})
+    .sync()
     .then((results) => console.log(results))
     .catch(error => console.log(error))

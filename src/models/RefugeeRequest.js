@@ -8,24 +8,20 @@ const RefugeeRequest = sequelize.define("refugeeRequest", {
         allowNull : false,
         primaryKey : true
     },
-    name : {
+    nativeCountry : {
         type : Sequelize.STRING,
         allowNull : false
     },
-    lastName : {
+    description : {
         type : Sequelize.STRING,
         allowNull : false
     },
-    email : {
-        type : Sequelize.STRING,
+    totalRefugee : {
+        type : Sequelize.INTEGER,
         allowNull : false
     },
-    password : {
-        type : Sequelize.STRING,
-        allowNull : false
-    },
-    verifyKey : {
-        type : Sequelize.STRING,
+    childrens : {
+        type : Sequelize.INTEGER,
         allowNull : false
     }
 
