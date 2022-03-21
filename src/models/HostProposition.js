@@ -8,23 +8,19 @@ const HostProposition = sequelize.define("hostProposition", {
         allowNull : false,
         primaryKey : true
     },
-    name : {
+    country : {
         type : Sequelize.STRING,
         allowNull : false
     },
-    lastName : {
+    city : {
         type : Sequelize.STRING,
         allowNull : false
     },
-    email : {
-        type : Sequelize.STRING,
+    hostCapcity : {
+        type : Sequelize.INTEGER,
         allowNull : false
     },
-    password : {
-        type : Sequelize.STRING,
-        allowNull : false
-    },
-    verifyKey : {
+    description : {
         type : Sequelize.STRING,
         allowNull : false
     }

@@ -33,6 +33,10 @@ const User = sequelize.define("user", {
     isHost : {
         type : Sequelize.BOOLEAN,
         allowNull : false
+    },
+    isRefugee : {
+        type : Sequelize.BOOLEAN,
+        allowNull : false
     }
 
 })
