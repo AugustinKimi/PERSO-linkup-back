@@ -1,11 +1,12 @@
 import User from "../models/User.js";
 
-class CreateProposition  {
+class CreateRequest  {
 
-    createProposition = async (request, response) => {
+    createRequest = async (request, response) => {
         // Check if the request is complete
-        const {userEmail, country, city, hostCapacity, description} = request.body
-        if(!userEmail || !country || !city || !hostCapacity || !description) {
+        const {userEmail, nativeCountry, description, adultRefugees, childrenRefugees} = request.body
+        console.log(request.body)
+        if(!userEmail || !nativeCountry || !description || !adultRefugees || !childrenRefugees) {
             response.status(401).json({success : false, message : "Something wen wrong with the request"})
             return
         }
@@ -20,23 +21,23 @@ class CreateProposition  {
             return
         }
 
+        if(!user.dataValues.isRefugee) {
+            response.status(401).json({success : false, message : "User is not a refugee"})
+            return
+        }
         if(!user) {
             response.status(401).json({success : false, message : "No user found"})
             return
         }
-        if(!user.dataValues.isHost) {
-            response.status(401).json({success : false, message : "User is not a host"})
-            return
-        }
         // Create the proposition
         const inserts = {
-            country,
-            city,
-            hostCapacity,
-            description
+            nativeCountry,
+            description,
+            adultRefugees,
+            childrenRefugees
         }
         try{
-            const proposition = await user.createHostproposition(inserts)
+            const request = await user.createRefugeerequest(inserts)
             response.status(200).json({success : true, message : "Proposition created"})
             return
         }
@@ -44,9 +45,10 @@ class CreateProposition  {
             console.log(error)
             response.status(401).json({success : false, message : error})
             return
+
         }
     }
 
 }
 
-export default CreateProposition
+export default CreateRequest

@@ -3,13 +3,15 @@ import bcrypt from 'bcrypt'
 
 class RegisterUser {
     
-    registerUser = async(request)  =>
+    registerUser = async(request, response)  =>
     {
         
-        const {name, lastName, email, password, isHost, isRefugee} = request
+        const {name, lastName, email, password, isHost, isRefugee} = request.body
 
-        if(!this.validatePassword(password)) return {success : false, message : "Invalide password format"}
-        console.log()
+        if(!this.validatePassword(password)) {
+            response.status(401).json({success : false, message : "Invalide password format"})
+            return
+        }
         const hashPassword = await this.hashPassword(password)
         const inserts = {
             name ,
@@ -23,11 +25,13 @@ class RegisterUser {
         try{
             const user = await User.create(inserts)
             // console.log(user)
-            return {success : true , message : "User created"}
+            response.status(200).json({success : true, message : "User created"})
+            return
         }
         catch (error){
             // console.log(error)
-            return {success : false, message : error}
+            response.status(401).json({success : false, message :  error})
+            return
 
         }
     }
