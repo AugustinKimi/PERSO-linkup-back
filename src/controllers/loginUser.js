@@ -14,19 +14,19 @@ class LoginUser  {
         let user
 
         try{
-            user = await User.findAll({where : { email }})
+            user = await User.findOne({where : { email }})
         }
         catch (error){
             response.status(401).json({success : false, message : error})
             return
         }
 
-        if(user.length === 0) {
+        if(!user) {
             response.status(401).json({success : false, message : "No user found"})
             return
         }
 
-        const testPassword = await bcrypt.compare(password, user[0].dataValues.password)
+        const testPassword = await bcrypt.compare(password, user.dataValues.password)
         if(!testPassword) {
             response.status(401).json({success : false, message : "Error in credentials"})
             return
@@ -34,11 +34,11 @@ class LoginUser  {
 
 
         const userData = {
-            name : user[0].dataValues.name,
-            lastName : user[0].dataValues.lastName,
-            email : user[0].dataValues.email,
-            isHost : user[0].dataValues.isHost,
-            isRefugee : user[0].dataValues.isRefugee,
+            name : user.dataValues.name,
+            lastName : user.dataValues.lastName,
+            email : user.dataValues.email,
+            isHost : user.dataValues.isHost,
+            isRefugee : user.dataValues.isRefugee,
         }
 
         response.status(200).json({success : true, message : "User logged"})

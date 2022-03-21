@@ -4,8 +4,8 @@ class CreateProposition  {
 
     createProposition = async (request, response) => {
         // Check if the request is complete
-        const {userEmail, country, city, hostCapacity, description} = request.body
-        if(!userEmail || !country || !city || !hostCapacity || !description) {
+        const {userId, country, city, hostCapacity, description} = request.body
+        if(!userId || !country || !city || !hostCapacity || !description) {
             response.status(401).json({success : false, message : "Something wen wrong with the request"})
             return
         }
@@ -13,7 +13,7 @@ class CreateProposition  {
         // Get the user and check if he exist
         let user 
         try{
-            user = await User.findOne({where : {email : userEmail}})   
+            user = await User.findOne({where : {id : userId}})   
         }
         catch(error){
             response.status(401).json({success : false, message : error})
