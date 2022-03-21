@@ -14,4 +14,4 @@ RefugeeUser.hasOne(RefugeeRequest)
 sequelize
     .sync({force : true})
     .then((results) => console.log(results))
-    .catch(error => console.log(error))
+    .catch(error => {console.log(error); throw(error)})
