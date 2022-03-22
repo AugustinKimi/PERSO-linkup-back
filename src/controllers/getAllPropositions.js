@@ -7,13 +7,10 @@ class GetAllPropositions  {
         
         try{
             const hostProposition = await HostProposition.findAll()
-            response.status(200).json({success : true, message : "All host propositions", data : hostProposition})
-            return
+            return response.status(200).json({success : true, message : "All host propositions", data : hostProposition}) 
         }
         catch (error){
-            response.status(401).json({success : false, message : error})
-            return
-
+            return response.status(401).json({success : false, message : error})
         }
     }
 

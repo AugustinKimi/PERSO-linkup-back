@@ -8,10 +8,9 @@ class RegisterUser {
         
         const {name, lastName, email, password, isHost, isRefugee} = request.body
 
-        if(!this.validatePassword(password)) {
-            response.status(401).json({success : false, message : "Invalide password format"})
-            return
-        }
+        if(!this.validatePassword(password)) 
+            return response.status(401).json({success : false, message : "Invalide password format"})
+
         const hashPassword = await this.hashPassword(password)
         const inserts = {
             name ,
@@ -24,15 +23,11 @@ class RegisterUser {
         }
         try{
             const user = await User.create(inserts)
-            // console.log(user)
-            response.status(200).json({success : true, message : "User created"})
-            return
+            return response.status(200).json({success : true, message : "User created"})
         }
         catch (error){
             // console.log(error)
-            response.status(401).json({success : false, message :  error})
-            return
-
+            return response.status(401).json({success : false, message :  error})
         }
     }
 

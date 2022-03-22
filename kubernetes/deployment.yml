@@ -18,10 +18,22 @@ spec:
       - name: node-cloud-migrations
         image: augustinvct/cloud-app:latest
         env:
-          - name: FOO
-            value: bar
-          - name: DB_USER
-            value: root
+          - name: JWT_KEY
+            valueFrom:
+              secretKeyRef:
+                name: cloud-app
+                key: jwt_key
+          - name: MARIADB_USER
+            value: linkup
+          - name: MARIADB_HOST
+            value: "34.89.141.140"
+          - name: MARIADB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: cloud-app
+                key: mariadb_password
+          - name: MARIADB_DATABASE
+            value: linkup
         command: ["node", "/cloud-app/src/utils/createDb.js"]
         resources:
           requests:
@@ -36,8 +48,20 @@ spec:
         ports:
         - containerPort: 8080
         env:
-          - name: FOO
-            value: bar
+          - name: JWT_KEY
+            valueFrom:
+              secretKeyRef:
+                name: cloud-app
+                key: jwt_key
+          - name: MARIADB_USER
+            value: linkup
+          - name: MARIADB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: cloud-app
+                key: mariadb_password
+          - name: MARIADB_DATABASE
+            value: linkup
         resources:
           requests:
             cpu: 250m
@@ -45,7 +69,3 @@ spec:
           limits:
             cpu: 250m
             memory: 512M
-
-// 1. Ajouter en clair user + IP + password de cloudsql a l'env des containers ne pas commit ce fichier jusqu'a lundi
-// 2. Faire echec quand les migrations ne passent pas 
-// 3. Verifier avec Tableplus que les mig passent
