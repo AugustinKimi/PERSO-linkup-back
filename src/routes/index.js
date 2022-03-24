@@ -11,25 +11,10 @@ import AddImage from '../controllers/addImage.js'
 import GetUserDatas from '../controllers/getUserDatas.js'
 const router = express.Router()
 
-// const apiAuth = (req, res, next) => {
-//   try {
-//     const token = req.headers.authorization.split(' ')[1];
-//     const decodedToken = jwt.verify(token, process.env.JWT_KEY);
-//     const userId = decodedToken.userId;
-//     if (req.body.userId && req.body.userId !== userId) {
-//       throw 'Invalid user ID';
-//     } else {
-//       next();
-//     }
-//   } catch {
-//     res.status(401).json({
-//       success: false, message : "Invalied auth"
-//     });
-//   }
-// };
+const checkUserRequest = (req, res, next) => {
+    
 
-// router.use(apiAuth)
-
+}
 
 
 router.get('/', (req, res) => {

@@ -1,14 +1,19 @@
 import express from "express"
 import router from "./routes/index.js"
 import dotenv from 'dotenv'
-import sequelize from "./utils/db.js"
+import cors from 'cors'
 import User from "./models/User.js";
 import HostProposition from "./models/HostProposition.js";
 import RefugeeRequest from "./models/RefugeeRequest.js";
 import PossibleCountry from './models/PossibleCountry.js'
 import ImageUrl from "./models/ImageUrl.js";
 dotenv.config()
+
+
+
+
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use(router)
 

@@ -9,6 +9,10 @@ const HostProposition = sequelize.define("hostproposition", {
         allowNull : false,
         primaryKey : true
     },
+    userStatus : {
+        type : Sequelize.STRING,
+        allowNull : false
+    },
     country : {
         type : Sequelize.STRING,
         allowNull : false
@@ -16,6 +20,14 @@ const HostProposition = sequelize.define("hostproposition", {
     city : {
         type : Sequelize.STRING,
         allowNull : false
+    },
+    houseSize : {
+        type : Sequelize.INTEGER,
+        allowNull : false
+    },
+    bedsNumber : {
+        type : Sequelize.INTEGER,
+        allowNull : false,
     },
     hostCapacity : {
         type : Sequelize.INTEGER,

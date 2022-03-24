@@ -7,7 +7,17 @@ class GetAllPropositions  {
         
         try{
             const hostProposition = await HostProposition.findAll()
-            return response.status(200).json({success : true, message : "All host propositions", data : hostProposition}) 
+            const propositionsArray = []
+            for(const proposition of hostProposition){
+                const user = await User.findOne({where : { id : proposition.userId}})
+                proposition.dataValues.user =  {
+                    name : user.dataValues.name,
+                    lastName : user.dataValues.lastName,
+                    email : user.dataValues.email,
+                }
+                propositionsArray.push(proposition.dataValues)
+            }
+            return response.status(200).json({success : true, message : "All host propositions", data : propositionsArray}) 
         }
         catch (error){
             return response.status(401).json({success : false, message : error})

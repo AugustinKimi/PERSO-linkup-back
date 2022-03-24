@@ -4,8 +4,8 @@ class CreateProposition  {
 
     createProposition = async (request, response) => {
         // Check if the request is complete
-        const {userId, country, city, hostCapacity, description} = request.body
-        if(!userId || !country || !city || !hostCapacity || !description) 
+        const {userId, userStatus, country, city, houseSize, bedsNumber, hostCapacity, description} = request.body
+        if(!userId || !userStatus || !country || !city || !houseSize || !bedsNumber || !hostCapacity || !description) 
             return response.status(401).json({success : false, message : "Something wen wrong with the request"})
 
         // Get the user and check if he exist
@@ -25,8 +25,11 @@ class CreateProposition  {
 
         // Create the proposition
         const inserts = {
+            userStatus,
             country,
             city,
+            houseSize,
+            bedsNumber,
             hostCapacity,
             description
         }

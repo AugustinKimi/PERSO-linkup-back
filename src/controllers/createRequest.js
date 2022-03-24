@@ -1,13 +1,13 @@
 import User from "../models/User.js";
-import RefugeeRequest from "../models/RefugeeRequest.js";
+
 
 class CreateRequest  {
 
     createRequest = async (request, response) => {
         // Check if the request is complete
-        const {userId, nativeCountry, description, adultRefugees, childrenRefugees, possibleCountries} = request.body
+        const {userId, userStatus, completFamily, nativeCountry, description, adultRefugees, childrenRefugees, possibleCountries} = request.body
         console.log(possibleCountries)
-        if(!userId || !nativeCountry || !description || !adultRefugees || !childrenRefugees || !possibleCountries || !possibleCountries.length > 0) 
+        if(!userId || !userStatus  || !completFamily  || !nativeCountry || !description || !adultRefugees || !childrenRefugees || !possibleCountries || !possibleCountries.length > 0) 
             return response.status(401).json({success : false, message : "Something wen wrong with the request"})
 
         // Get the user and check if he exist
@@ -19,15 +19,19 @@ class CreateRequest  {
             return response.status(401).json({success : false, message : error})  
         }
 
+        if(!user) 
+            return response.status(401).json({success : false, message : "No user found"})
+
         if(!user.dataValues.isRefugee) 
             return response.status(401).json({success : false, message : "User is not a refugee"})
 
 
-        if(!user) 
-            return response.status(401).json({success : false, message : "No user found"})
+        
 
         // Create the proposition
         const inserts = {
+            userStatus,
+            completFamily,
             nativeCountry,
             description,
             adultRefugees,

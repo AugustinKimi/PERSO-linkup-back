@@ -8,6 +8,14 @@ const RefugeeRequest = sequelize.define("refugeerequest", {
         allowNull : false,
         primaryKey : true
     },
+    userStatus : {
+        type : Sequelize.STRING,
+        allowNull : false
+    },
+    completFamily : {
+        type : Sequelize.BOOLEAN,
+        allowNull : false
+    },
     nativeCountry : {
         type : Sequelize.STRING,
         allowNull : false

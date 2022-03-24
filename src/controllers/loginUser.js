@@ -28,7 +28,12 @@ class LoginUser  {
             return response.status(401).json({success : false, message : "Error in credentials"})
 
         const token = jwt.sign({
-            userId  : user.dataValues.id
+            userId  : user.dataValues.id,
+            name  : user.dataValues.name,
+            lastName  : user.dataValues.lastName,
+            name  : user.dataValues.name,
+            isHost : user.dataValues.isHost,
+            isRefugee : user.dataValues.isRefugee,
         }, process.env.JWT_KEY)
 
 
