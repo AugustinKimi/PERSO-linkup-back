@@ -55,6 +55,8 @@ spec:
                 key: jwt_key
           - name: MARIADB_USER
             value: linkup
+          - name: MARIADB_HOST
+            value: "34.89.141.140"
           - name: MARIADB_PASSWORD
             valueFrom:
               secretKeyRef:

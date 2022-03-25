@@ -18,7 +18,7 @@ const checkUserRequest = (req, res, next) => {
 
 
 router.get('/', (req, res) => {
-    res.json({test : "test"})
+    res.json({test : "Test update numero 2"})
 })
 
 router.post('/api/add-user', async (req, res) => {

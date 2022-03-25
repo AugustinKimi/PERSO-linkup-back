@@ -6,8 +6,8 @@ class CreateRequest  {
     createRequest = async (request, response) => {
         // Check if the request is complete
         const {userId, userStatus, completFamily, nativeCountry, description, adultRefugees, childrenRefugees, possibleCountries} = request.body
-        console.log(possibleCountries)
-        if(!userId || !userStatus  || !completFamily  || !nativeCountry || !description || !adultRefugees || !childrenRefugees || !possibleCountries || !possibleCountries.length > 0) 
+        console.log(request.body)
+        if(!userId || !userStatus  || completFamily == undefined  || !nativeCountry || !description || !adultRefugees || !childrenRefugees || !possibleCountries || !possibleCountries.length > 0) 
             return response.status(401).json({success : false, message : "Something wen wrong with the request"})
 
         // Get the user and check if he exist

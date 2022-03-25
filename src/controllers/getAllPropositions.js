@@ -20,6 +20,7 @@ class GetAllPropositions  {
             return response.status(200).json({success : true, message : "All host propositions", data : propositionsArray}) 
         }
         catch (error){
+            console.log(error)
             return response.status(401).json({success : false, message : error})
         }
     }

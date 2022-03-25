@@ -31,7 +31,6 @@ class LoginUser  {
             userId  : user.dataValues.id,
             name  : user.dataValues.name,
             lastName  : user.dataValues.lastName,
-            name  : user.dataValues.name,
             isHost : user.dataValues.isHost,
             isRefugee : user.dataValues.isRefugee,
         }, process.env.JWT_KEY)
